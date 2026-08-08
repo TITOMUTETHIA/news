@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "dgSpecHash": "Viq3kSqA4RQ=",
+  "success": false,
+  "projectFilePath": "C:\\Users\\BIGFISH\\source\\repos\\news\\news\\news\\news.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\BIGFISH\\.nuget\\packages\\microsoft.windows.sdk.net.ref\\10.0.19041.57\\microsoft.windows.sdk.net.ref.10.0.19041.57.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1012",
+      "level": "Error",
+      "message": "Platform version is not present for one or more target frameworks, even though they have specified a platform: net10.0-ios, net10.0-maccatalyst",
+      "projectPath": "C:\\Users\\BIGFISH\\source\\repos\\news\\news\\news\\news.csproj",
+      "filePath": "C:\\Users\\BIGFISH\\source\\repos\\news\\news\\news\\news.csproj",
+      "targetGraphs": []
+    }
+  ]
+}
