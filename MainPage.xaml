@@ -13,14 +13,14 @@
         </BlazorWebView.RootComponents>
     </BlazorWebView>
 
-        <Content Title ="Indexe"
+        <Content Title ="Counter"
     <BlazorWebView " HostPage="wwwroot/index.html">
             <BlazorWebView.RootComponents>
                 <RootComponent Selector="#app" ComponentType="{x:Type shared:Routes}" />
             </BlazorWebView.RootComponents>
     </BlazorWebView>
 
-            <Content Title ="Indexe"
+            <Content Title ="Weather"
     <BlazorWebView " HostPage="wwwroot/index.html">
                 <BlazorWebView.RootComponents>
                     <RootComponent Selector="#app" ComponentType="{x:Type shared:Routes}" />
