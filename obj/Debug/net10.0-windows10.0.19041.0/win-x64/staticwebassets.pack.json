@@ -9,6 +9,10 @@
       "PackagePath": "staticwebassets\\_framework\\blazor.webview.js"
     },
     {
+      "Id": "C:\\Users\\BIGFISH\\source\\repos\\news\\news\\news\\obj\\Debug\\net10.0-windows10.0.19041.0\\win-x64\\scopedcss\\bundle\\news.styles.css",
+      "PackagePath": "staticwebassets\\news.styles.css"
+    },
+    {
       "Id": "C:\\Users\\BIGFISH\\source\\repos\\news\\news\\news\\wwwroot\\app.css",
       "PackagePath": "staticwebassets\\app.css"
     },
