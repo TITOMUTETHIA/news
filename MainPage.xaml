@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:news"
              xmlns:shared="clr-namespace:news.Shared;assembly=news.Shared"
+            xmlns:android="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;assembly=Microsoft.Maui.Controls"
              xmlns:views="clr-namespace:news.Pages"
              x:Class="news.MainPage"
              BackgroundColor="{DynamicResource PageBackgroundColor}">

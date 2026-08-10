@@ -9,3 +9,6 @@ C:\Users\BIGFISH\source\repos\news\news\news.Shared\obj\Debug\net10.0\staticweba
 C:\Users\BIGFISH\source\repos\news\news\news.Shared\obj\Debug\net10.0\staticwebassets.build.json
 C:\Users\BIGFISH\source\repos\news\news\news.Shared\obj\Debug\net10.0\staticwebassets.build.json
 C:\Users\BIGFISH\source\repos\news\news\news.Shared\obj\Debug\net10.0\staticwebassets.build.json
+C:\Users\BIGFISH\source\repos\news\news\news.Shared\obj\Debug\net10.0\staticwebassets.build.json
+C:\Users\BIGFISH\source\repos\news\news\news.Shared\obj\Debug\net10.0\staticwebassets.build.json
+C:\Users\BIGFISH\source\repos\news\news\news.Shared\obj\Debug\net10.0\staticwebassets.build.json

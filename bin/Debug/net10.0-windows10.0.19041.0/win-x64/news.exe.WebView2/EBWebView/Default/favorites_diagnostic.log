@@ -1,0 +1,9 @@
+2026-08-10 18:57:42.584: [INFO] CurrentProfilePath: C:\Users\BIGFISH\source\repos\news\news\news\bin\Debug\net10.0-windows10.0.19041.0\win-x64\news.exe.WebView2\EBWebView\Default
+2026-08-10 18:57:42.584: [INFO] Profiles total count: 1
+2026-08-10 18:57:42.584: [INFO] Profile: name=Profile 1 path=C:\Users\BIGFISH\source\repos\news\news\news\bin\Debug\net10.0-windows10.0.19041.0\win-x64\news.exe.WebView2\EBWebView\Default lastActive=null
+2026-08-10 18:57:42.584: [INFO] LastUsedProfileDir: C:\Users\BIGFISH\source\repos\news\news\news\bin\Debug\net10.0-windows10.0.19041.0\win-x64\news.exe.WebView2\EBWebView\Default
+2026-08-10 18:57:42.584: [INFO] OnDoneLoading sync enabled: 0
+2026-08-10 18:57:42.584: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2026-08-10 18:57:42.584: [INFO] BookmarksLoadDropped droppedNodes=0
+2026-08-10 18:57:42.584: [INFO] BookmarksSnapshot Startup total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-08-10 18:58:17.304: [INFO] BookmarksSnapshot Shutdown total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
