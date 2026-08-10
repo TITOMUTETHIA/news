@@ -9,7 +9,7 @@
     <ContentPage Title ="Index">
          <BlazorWebView HostPage="wwwroot/index.html">
             <BlazorWebView.RootComponents>
-                 <RootComponent Selector="#app" ComponentType="{x:Type shared:Routes}" />
+                 <RootComponent Selector="#app" ComponentType="{x:Type views:Index}" />
             </BlazorWebView.RootComponents>
          </BlazorWebView>
     </ContentPage>
@@ -17,7 +17,7 @@
     <ContentPage Title ="Counter">
         <BlazorWebView HostPage="wwwroot/index.html">
             <BlazorWebView.RootComponents>
-                <RootComponent Selector="#app" ComponentType="{x:Type shared:Routes}" />
+                <RootComponent Selector="#app" ComponentType="{x:Type views:Counter}" />
             </BlazorWebView.RootComponents>     
         </BlazorWebView>
     </ContentPage>
@@ -26,7 +26,7 @@
     <ContentPage Title ="Weather">
         <BlazorWebView HostPage="wwwroot/index.html">
             <BlazorWebView.RootComponents>
-                <RootComponent Selector="#app" ComponentType="{x:Type shared:Routes}" />
+                <RootComponent Selector="#app" ComponentType="{x:Type views:Weather}" />
             </BlazorWebView.RootComponents>
         </BlazorWebView>
     </ContentPage>
