@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:news"
              xmlns:shared="clr-namespace:news.Shared;assembly=news.Shared"
             xmlns:android="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;assembly=Microsoft.Maui.Controls"
+            android:TabbedPage.ToolbarPlacement="Bottom"
              xmlns:views="clr-namespace:news.Pages"
              x:Class="news.MainPage"
              BackgroundColor="{DynamicResource PageBackgroundColor}">
