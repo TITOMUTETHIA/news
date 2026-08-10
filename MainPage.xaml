@@ -3,28 +3,33 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:news"
              xmlns:shared="clr-namespace:news.Shared;assembly=news.Shared"
-             xmlns:views="clr-namespace:news.pages"
+             xmlns:views="clr-namespace:news.Pages"
              x:Class="news.MainPage"
              BackgroundColor="{DynamicResource PageBackgroundColor}">
-    <Content Title ="Indexe"
-    <BlazorWebView " HostPage="wwwroot/index.html">
-        <BlazorWebView.RootComponents>
-            <RootComponent Selector="#app" ComponentType="{x:Type shared:Routes}" />
-        </BlazorWebView.RootComponents>
-    </BlazorWebView>
+    <ContentPage Title ="Index">
+         <BlazorWebView HostPage="wwwroot/index.html">
+            <BlazorWebView.RootComponents>
+                 <RootComponent Selector="#app" ComponentType="{x:Type shared:Routes}" />
+            </BlazorWebView.RootComponents>
+         </BlazorWebView>
+    </ContentPage>
 
-        <Content Title ="Counter"
-    <BlazorWebView " HostPage="wwwroot/index.html">
+    <ContentPage Title ="Counter">
+        <BlazorWebView HostPage="wwwroot/index.html">
+            <BlazorWebView.RootComponents>
+                <RootComponent Selector="#app" ComponentType="{x:Type shared:Routes}" />
+            </BlazorWebView.RootComponents>     
+        </BlazorWebView>
+    </ContentPage>
+
+
+    <ContentPage Title ="Weather">
+        <BlazorWebView HostPage="wwwroot/index.html">
             <BlazorWebView.RootComponents>
                 <RootComponent Selector="#app" ComponentType="{x:Type shared:Routes}" />
             </BlazorWebView.RootComponents>
-    </BlazorWebView>
-
-            <Content Title ="Weather"
-    <BlazorWebView " HostPage="wwwroot/index.html">
-                <BlazorWebView.RootComponents>
-                    <RootComponent Selector="#app" ComponentType="{x:Type shared:Routes}" />
-                </BlazorWebView.RootComponents>
-    </BlazorWebView>
+        </BlazorWebView>
+    </ContentPage>
+   
 
 </TabbedPage>
