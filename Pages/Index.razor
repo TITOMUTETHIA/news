@@ -1,6 +1,29 @@
 ﻿@page "/"
 <h3>Component1</h3>
-<SurveyPrompt Title ="How is blazor working for you?" />    
+<SurveyPrompt Title ="How is blazor working for you?" />  
+
+
+<button class="btn btn-primary" @onclick="CheckInternet">Check internet connection</button>
 @code {
 
+    private async Task CheckInternet()
+    {
+        try
+        {
+            using var httpClient = new HttpClient();
+            var response = await httpClient.GetAsync("https://www.google.com");
+            if (response.IsSuccessStatusCode)
+            {
+                Console.WriteLine("Internet connection is available.");
+            }
+            else
+            {
+                Console.WriteLine("No internet connection.");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error checking internet connection: {ex.Message}");
+        }
+    }
 }
