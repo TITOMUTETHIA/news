@@ -15,9 +15,8 @@ namespace news
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 });
 
-            // Add device-specific services used by the news.Shared project
             builder.Services.AddSingleton<IFormFactor, FormFactor>();
-
+            builder.Services.AddSingleton<IWeatherService>(sp => new OpenMeteoWeatherService(new HttpClient()));
             builder.Services.AddMauiBlazorWebView();
 
 #if DEBUG

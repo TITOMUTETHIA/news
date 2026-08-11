@@ -1,67 +1,89 @@
 ﻿@page "/weather"
+@using news.Services
+@inject IWeatherService WeatherService
 
-<div class="weather-page">
-    <div class="weather-hero">
-        <div class="hero-copy">
-            <p class="weather-eyebrow">Today's outlook</p>
-            <h2>Clear skies and a refreshing breeze</h2>
-            <p>It’s the kind of day that feels made for brunch, a walk by the water, or a little extra time outdoors.</p>
-            <div class="hero-actions">
-                <span class="chip">☀️ 24°C</span>
-                <span class="chip">🌬 12 km/h</span>
-                <span class="chip">💧 42% humidity</span>
-            </div>
+<div class="dashboard-page">
+    <section class="hero-card hero-panel">
+        <div>
+            <p class="eyebrow">Weather forecast</p>
+            <h2>Live conditions for your day</h2>
+            <p class="hero-copy">This view uses Open-Meteo data to provide a reliable, up-to-date forecast with a polished experience.</p>
         </div>
+        <button class="primary-button" @onclick="ReloadAsync">Refresh</button>
+    </section>
 
-        <div class="temp-card">
-            <div class="temp-value">24°</div>
-            <div class="temp-meta">Feels like 26°</div>
-            <div class="temp-footer">Mostly sunny • Light breeze</div>
-        </div>
-    </div>
-
-    <div class="weather-grid">
-        <section class="info-card">
-            <div class="card-title">Hourly forecast</div>
-            <div class="hourly-list">
-                @foreach (var hour in forecast)
-                {
-                    <div class="hour-item">
-                        <span class="hour-label">@hour.Time</span>
-                        <span class="hour-icon">@hour.Icon</span>
-                        <strong>@hour.Temp</strong>
-                    </div>
-                }
+    @if (isLoading)
+    {
+        <div class="status-card">Loading forecast…</div>
+    }
+    else if (errorMessage is not null)
+    {
+        <div class="status-card error">@errorMessage</div>
+    }
+    else if (dashboard is not null)
+    {
+        <section class="hero-card weather-highlight">
+            <div>
+                <p class="eyebrow">Now in @dashboard.City</p>
+                <h3>@dashboard.Condition</h3>
+                <p class="hero-copy">@dashboard.Summary</p>
             </div>
+            <div class="temp-badge">@dashboard.TemperatureC.ToString("0")°C</div>
         </section>
 
-        <section class="info-card">
-            <div class="card-title">Highlights</div>
-            <div class="highlight-list">
-                <div class="highlight-item">
-                    <span>UV Index</span>
-                    <strong>Low</strong>
+        <section class="content-grid">
+            <article class="info-card">
+                <div class="card-title">Hourly outlook</div>
+                <div class="list-stack">
+                    @foreach (var item in dashboard.Forecasts)
+                    {
+                        <div class="list-row">
+                            <span>@item.Time</span>
+                            <span>@item.Icon</span>
+                            <strong>@item.Temp</strong>
+                        </div>
+                    }
                 </div>
-                <div class="highlight-item">
-                    <span>Visibility</span>
-                    <strong>Excellent</strong>
+            </article>
+
+            <article class="info-card">
+                <div class="card-title">Key metrics</div>
+                <div class="list-stack">
+                    <div class="list-row"><span>Feels like</span><strong>@dashboard.FeelsLikeC.ToString("0")°C</strong></div>
+                    <div class="list-row"><span>Humidity</span><strong>@dashboard.HumidityPercent.ToString("0")%</strong></div>
+                    <div class="list-row"><span>Wind</span><strong>@dashboard.WindKph.ToString("0") km/h</strong></div>
+                    <div class="list-row"><span>Rain chance</span><strong>@dashboard.PrecipitationChance.ToString("0")%</strong></div>
                 </div>
-                <div class="highlight-item">
-                    <span>Chance of rain</span>
-                    <strong>10%</strong>
-                </div>
-            </div>
+            </article>
         </section>
-    </div>
+    }
 </div>
 
 @code {
-    private (string Time, string Icon, string Temp)[] forecast =
+    private WeatherDashboard? dashboard;
+    private bool isLoading;
+    private string? errorMessage;
+
+    protected override async Task OnInitializedAsync() => await ReloadAsync();
+
+    private async Task ReloadAsync()
     {
-        ("Now", "☀️", "24°"),
-        ("11 AM", "🌤️", "25°"),
-        ("12 PM", "🌤️", "27°"),
-        ("1 PM", "☀️", "28°"),
-        ("2 PM", "☀️", "29°")
-    };
+        isLoading = true;
+        errorMessage = null;
+        StateHasChanged();
+
+        try
+        {
+            dashboard = await WeatherService.GetForecastAsync(52.52, 13.4050);
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Unable to load weather data: {ex.Message}";
+        }
+        finally
+        {
+            isLoading = false;
+            StateHasChanged();
+        }
+    }
 }
