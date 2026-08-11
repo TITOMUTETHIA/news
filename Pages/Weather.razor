@@ -1,6 +1,67 @@
 ﻿@page "/weather"
-<h3>Weather</h3>
+
+<div class="weather-page">
+    <div class="weather-hero">
+        <div class="hero-copy">
+            <p class="weather-eyebrow">Today's outlook</p>
+            <h2>Clear skies and a refreshing breeze</h2>
+            <p>It’s the kind of day that feels made for brunch, a walk by the water, or a little extra time outdoors.</p>
+            <div class="hero-actions">
+                <span class="chip">☀️ 24°C</span>
+                <span class="chip">🌬 12 km/h</span>
+                <span class="chip">💧 42% humidity</span>
+            </div>
+        </div>
+
+        <div class="temp-card">
+            <div class="temp-value">24°</div>
+            <div class="temp-meta">Feels like 26°</div>
+            <div class="temp-footer">Mostly sunny • Light breeze</div>
+        </div>
+    </div>
+
+    <div class="weather-grid">
+        <section class="info-card">
+            <div class="card-title">Hourly forecast</div>
+            <div class="hourly-list">
+                @foreach (var hour in forecast)
+                {
+                    <div class="hour-item">
+                        <span class="hour-label">@hour.Time</span>
+                        <span class="hour-icon">@hour.Icon</span>
+                        <strong>@hour.Temp</strong>
+                    </div>
+                }
+            </div>
+        </section>
+
+        <section class="info-card">
+            <div class="card-title">Highlights</div>
+            <div class="highlight-list">
+                <div class="highlight-item">
+                    <span>UV Index</span>
+                    <strong>Low</strong>
+                </div>
+                <div class="highlight-item">
+                    <span>Visibility</span>
+                    <strong>Excellent</strong>
+                </div>
+                <div class="highlight-item">
+                    <span>Chance of rain</span>
+                    <strong>10%</strong>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
 
 @code {
-
+    private (string Time, string Icon, string Temp)[] forecast =
+    {
+        ("Now", "☀️", "24°"),
+        ("11 AM", "🌤️", "25°"),
+        ("12 PM", "🌤️", "27°"),
+        ("1 PM", "☀️", "28°"),
+        ("2 PM", "☀️", "29°")
+    };
 }
