@@ -1,5 +1,3 @@
-using news.Shared.Services;
-
 namespace news.Services
 {
     public class FormFactor : IFormFactor

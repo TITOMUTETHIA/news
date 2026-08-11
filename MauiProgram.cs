@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
 using news.Services;
-using news.Shared.Services;
 
 namespace news
 {
