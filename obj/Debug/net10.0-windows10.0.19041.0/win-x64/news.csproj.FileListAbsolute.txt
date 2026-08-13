@@ -33,10 +33,6 @@ C:\Users\ADMIN\OneDrive - Chrome Partners\Desktop\WORKING FOLDER\tito\news\news\
 C:\Users\ADMIN\OneDrive - Chrome Partners\Desktop\WORKING FOLDER\tito\news\news\bin\Debug\net10.0-windows10.0.19041.0\win-x64\splashSplashScreen.scale-200.png
 C:\Users\ADMIN\OneDrive - Chrome Partners\Desktop\WORKING FOLDER\tito\news\news\bin\Debug\net10.0-windows10.0.19041.0\win-x64\splashSplashScreen.scale-400.png
 C:\Users\ADMIN\OneDrive - Chrome Partners\Desktop\WORKING FOLDER\tito\news\news\bin\Debug\net10.0-windows10.0.19041.0\win-x64\OpenSans-Regular.ttf
-C:\Users\ADMIN\OneDrive - Chrome Partners\Desktop\WORKING FOLDER\tito\news\news\bin\Debug\net10.0-windows10.0.19041.0\win-x64\dotnet_bot.scale-400.png
-C:\Users\ADMIN\OneDrive - Chrome Partners\Desktop\WORKING FOLDER\tito\news\news\bin\Debug\net10.0-windows10.0.19041.0\win-x64\dotnet_bot.scale-200.png
-C:\Users\ADMIN\OneDrive - Chrome Partners\Desktop\WORKING FOLDER\tito\news\news\bin\Debug\net10.0-windows10.0.19041.0\win-x64\dotnet_bot.scale-150.png
-C:\Users\ADMIN\OneDrive - Chrome Partners\Desktop\WORKING FOLDER\tito\news\news\bin\Debug\net10.0-windows10.0.19041.0\win-x64\dotnet_bot.scale-125.png
 C:\Users\ADMIN\OneDrive - Chrome Partners\Desktop\WORKING FOLDER\tito\news\news\bin\Debug\net10.0-windows10.0.19041.0\win-x64\dotnet_bot.scale-100.png
 C:\Users\ADMIN\OneDrive - Chrome Partners\Desktop\WORKING FOLDER\tito\news\news\bin\Debug\net10.0-windows10.0.19041.0\win-x64\appiconLargeTile.scale-400.png
 C:\Users\ADMIN\OneDrive - Chrome Partners\Desktop\WORKING FOLDER\tito\news\news\bin\Debug\net10.0-windows10.0.19041.0\win-x64\appiconLargeTile.scale-200.png
@@ -480,10 +476,6 @@ C:\Users\ADMIN\OneDrive - Chrome Partners\Desktop\WORKING FOLDER\tito\news\news\
 C:\Users\ADMIN\OneDrive - Chrome Partners\Desktop\WORKING FOLDER\tito\news\news\obj\Debug\net10.0-windows10.0.19041.0\win-x64\mauisplash.stamp
 C:\Users\ADMIN\OneDrive - Chrome Partners\Desktop\WORKING FOLDER\tito\news\news\obj\Debug\net10.0-windows10.0.19041.0\win-x64\mauifont.stamp
 C:\Users\ADMIN\OneDrive - Chrome Partners\Desktop\WORKING FOLDER\tito\news\news\obj\Debug\net10.0-windows10.0.19041.0\win-x64\resizetizer\f\OpenSans-Regular.ttf
-C:\Users\ADMIN\OneDrive - Chrome Partners\Desktop\WORKING FOLDER\tito\news\news\obj\Debug\net10.0-windows10.0.19041.0\win-x64\resizetizer\r\dotnet_bot.scale-400.png
-C:\Users\ADMIN\OneDrive - Chrome Partners\Desktop\WORKING FOLDER\tito\news\news\obj\Debug\net10.0-windows10.0.19041.0\win-x64\resizetizer\r\dotnet_bot.scale-200.png
-C:\Users\ADMIN\OneDrive - Chrome Partners\Desktop\WORKING FOLDER\tito\news\news\obj\Debug\net10.0-windows10.0.19041.0\win-x64\resizetizer\r\dotnet_bot.scale-150.png
-C:\Users\ADMIN\OneDrive - Chrome Partners\Desktop\WORKING FOLDER\tito\news\news\obj\Debug\net10.0-windows10.0.19041.0\win-x64\resizetizer\r\dotnet_bot.scale-125.png
 C:\Users\ADMIN\OneDrive - Chrome Partners\Desktop\WORKING FOLDER\tito\news\news\obj\Debug\net10.0-windows10.0.19041.0\win-x64\resizetizer\r\dotnet_bot.scale-100.png
 C:\Users\ADMIN\OneDrive - Chrome Partners\Desktop\WORKING FOLDER\tito\news\news\obj\Debug\net10.0-windows10.0.19041.0\win-x64\resizetizer\r\appiconLargeTile.scale-400.png
 C:\Users\ADMIN\OneDrive - Chrome Partners\Desktop\WORKING FOLDER\tito\news\news\obj\Debug\net10.0-windows10.0.19041.0\win-x64\resizetizer\r\appiconLargeTile.scale-200.png
@@ -563,6 +555,4 @@ c:\Users\ADMIN\OneDrive - Chrome Partners\Desktop\WORKING FOLDER\tito\news\news\
 c:\Users\ADMIN\OneDrive - Chrome Partners\Desktop\WORKING FOLDER\tito\news\news\obj\Debug\net10.0-windows10.0.19041.0\win-x64\scopedcss\projectbundle\news.bundle.scp.css
 c:\Users\ADMIN\OneDrive - Chrome Partners\Desktop\WORKING FOLDER\tito\news\news\bin\Debug\net10.0-windows10.0.19041.0\win-x64\wwwroot\news.styles.css
 c:\Users\ADMIN\OneDrive - Chrome Partners\Desktop\WORKING FOLDER\tito\news\news\bin\Debug\net10.0-windows10.0.19041.0\win-x64\wwwroot\news.qtzrfmxgwn.bundle.scp.css
-c:\Users\ADMIN\OneDrive - Chrome Partners\Desktop\WORKING FOLDER\tito\news\news\bin\Debug\net10.0-windows10.0.19041.0\win-x64\rain_png_34472.scale-100.png
 c:\Users\ADMIN\OneDrive - Chrome Partners\Desktop\WORKING FOLDER\tito\news\news\bin\Debug\net10.0-windows10.0.19041.0\win-x64\Components\Layout\MainLayout.razor.css
-c:\Users\ADMIN\OneDrive - Chrome Partners\Desktop\WORKING FOLDER\tito\news\news\obj\Debug\net10.0-windows10.0.19041.0\win-x64\resizetizer\r\rain_png_34472.scale-100.png
