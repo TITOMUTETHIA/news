@@ -559,3 +559,10 @@ C:\Users\ADMIN\OneDrive - Chrome Partners\Desktop\WORKING FOLDER\tito\news\news\
 C:\Users\ADMIN\OneDrive - Chrome Partners\Desktop\WORKING FOLDER\tito\news\news\obj\Debug\net10.0-windows10.0.19041.0\win-x64\qualifiers.txt
 C:\Users\ADMIN\OneDrive - Chrome Partners\Desktop\WORKING FOLDER\tito\news\news\obj\Debug\net10.0-windows10.0.19041.0\win-x64\qualifiers.txt.intermediate
 C:\Users\ADMIN\OneDrive - Chrome Partners\Desktop\WORKING FOLDER\tito\news\news\obj\Debug\net10.0-windows10.0.19041.0\win-x64\MultipleQualifiersPerDimensionFound.txt
+c:\Users\ADMIN\OneDrive - Chrome Partners\Desktop\WORKING FOLDER\tito\news\news\obj\Debug\net10.0-windows10.0.19041.0\win-x64\scopedcss\Components\Layout\MainLayout.razor.rz.scp.css
+c:\Users\ADMIN\OneDrive - Chrome Partners\Desktop\WORKING FOLDER\tito\news\news\obj\Debug\net10.0-windows10.0.19041.0\win-x64\scopedcss\projectbundle\news.bundle.scp.css
+c:\Users\ADMIN\OneDrive - Chrome Partners\Desktop\WORKING FOLDER\tito\news\news\bin\Debug\net10.0-windows10.0.19041.0\win-x64\wwwroot\news.styles.css
+c:\Users\ADMIN\OneDrive - Chrome Partners\Desktop\WORKING FOLDER\tito\news\news\bin\Debug\net10.0-windows10.0.19041.0\win-x64\wwwroot\news.qtzrfmxgwn.bundle.scp.css
+c:\Users\ADMIN\OneDrive - Chrome Partners\Desktop\WORKING FOLDER\tito\news\news\bin\Debug\net10.0-windows10.0.19041.0\win-x64\rain_png_34472.scale-100.png
+c:\Users\ADMIN\OneDrive - Chrome Partners\Desktop\WORKING FOLDER\tito\news\news\bin\Debug\net10.0-windows10.0.19041.0\win-x64\Components\Layout\MainLayout.razor.css
+c:\Users\ADMIN\OneDrive - Chrome Partners\Desktop\WORKING FOLDER\tito\news\news\obj\Debug\net10.0-windows10.0.19041.0\win-x64\resizetizer\r\rain_png_34472.scale-100.png

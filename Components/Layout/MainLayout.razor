@@ -1,0 +1,24 @@
+@namespace news
+@inherits LayoutComponentBase
+
+<div class="app-shell">
+    <header class="app-header">
+        <div class="brand-block">
+            <span class="brand-mark">N</span>
+            <div>
+                <p class="brand-label">News</p>
+                <small>Daily snapshot</small>
+            </div>
+        </div>
+
+        <nav class="top-nav" aria-label="Main navigation">
+            <span class="nav-badge">Overview</span>
+            <span class="nav-badge">Focus</span>
+            <span class="nav-badge">Weather</span>
+        </nav>
+    </header>
+
+    <main class="page-container">
+        @Body
+    </main>
+</div>

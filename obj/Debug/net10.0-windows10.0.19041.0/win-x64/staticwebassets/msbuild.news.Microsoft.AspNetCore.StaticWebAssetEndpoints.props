@@ -24,5 +24,17 @@
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"sv7ec4495e"},{"Name":"integrity","Value":"sha256-mER\u002BT7CdOIujvDTEoLaPq\u002BYbLuzjjQUhDimONsPzj\u002BM="},{"Name":"label","Value":"index.html"}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"763"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u0022mER\u002BT7CdOIujvDTEoLaPq\u002BYbLuzjjQUhDimONsPzj\u002BM=\u0022"},{"Name":"Last-Modified","Value":"Tue, 11 Aug 2026 12:54:14 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="news.qtzrfmxgwn.styles.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\news.styles.css'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"qtzrfmxgwn"},{"Name":"integrity","Value":"sha256-HoXPBAvpNwl2IuAU57fYjbP7VV7bIhRWBsh02j5KXOg="},{"Name":"label","Value":"news.styles.css"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1774"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022HoXPBAvpNwl2IuAU57fYjbP7VV7bIhRWBsh02j5KXOg=\u0022"},{"Name":"Last-Modified","Value":"Thu, 13 Aug 2026 13:36:28 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="news.styles.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\news.styles.css'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-HoXPBAvpNwl2IuAU57fYjbP7VV7bIhRWBsh02j5KXOg="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1774"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022HoXPBAvpNwl2IuAU57fYjbP7VV7bIhRWBsh02j5KXOg=\u0022"},{"Name":"Last-Modified","Value":"Thu, 13 Aug 2026 13:36:28 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
   </ItemGroup>
 </Project>

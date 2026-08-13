@@ -1,5 +1,6 @@
 wwwroot\_framework\blazor.modules.json
 wwwroot\_framework\blazor.webview.js
+Components\Layout\MainLayout.razor.css
 OpenSans-Regular.ttf
 appicon.ico
 appiconLargeTile.scale-100.png
@@ -52,11 +53,14 @@ dotnet_bot.scale-125.png
 dotnet_bot.scale-150.png
 dotnet_bot.scale-200.png
 dotnet_bot.scale-400.png
+rain_png_34472.scale-100.png
 splashSplashScreen.scale-100.png
 splashSplashScreen.scale-125.png
 splashSplashScreen.scale-150.png
 splashSplashScreen.scale-200.png
 splashSplashScreen.scale-400.png
+wwwroot\news.styles.css
+wwwroot\news.qtzrfmxgwn.bundle.scp.css
 AboutAssets.txt
 wwwroot\app.css
 wwwroot\index.html
