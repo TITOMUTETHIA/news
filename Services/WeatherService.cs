@@ -11,6 +11,7 @@ namespace news.Services
 
     public sealed class OpenMeteoWeatherService : IWeatherService
     {
+        private const string BaseAddress = "https://api.open-meteo.com";
         private readonly HttpClient _httpClient;
         private readonly JsonSerializerOptions _jsonOptions = new()
         {
@@ -19,20 +20,59 @@ namespace news.Services
 
         public OpenMeteoWeatherService(HttpClient httpClient)
         {
-            _httpClient = httpClient;
+            _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
             _httpClient.Timeout = TimeSpan.FromSeconds(15);
+
+            if (!Uri.TryCreate(BaseAddress, UriKind.Absolute, out var baseUri) ||
+                !string.Equals(baseUri.Scheme, Uri.UriSchemeHttps, StringComparison.OrdinalIgnoreCase))
+            {
+                throw new InvalidOperationException("The weather API base URL must use HTTPS.");
+            }
         }
 
         public async Task<WeatherDashboard> GetForecastAsync(double latitude, double longitude, CancellationToken cancellationToken = default)
         {
-            var uri = $"https://api.open-meteo.com/v1/forecast?latitude={latitude:F4}&longitude={longitude:F4}&current=temperature_2m,relative_humidity_2m,precipitation_probability,wind_speed_10m,weather_code&hourly=temperature_2m,weather_code,precipitation_probability&forecast_days=1&timezone=auto";
-            using var response = await _httpClient.GetAsync(uri, cancellationToken);
+            if (double.IsNaN(latitude) || double.IsNaN(longitude) ||
+                double.IsInfinity(latitude) || double.IsInfinity(longitude) ||
+                latitude < -90 || latitude > 90 ||
+                longitude < -180 || longitude > 180)
+            {
+                throw new ArgumentOutOfRangeException(nameof(latitude), "Latitude and longitude values must fall within valid global ranges.");
+            }
+
+            var uri = BuildForecastUri(latitude, longitude);
+            using var request = new HttpRequestMessage(HttpMethod.Get, uri);
+            request.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+            using var response = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
             response.EnsureSuccessStatusCode();
 
             var payload = await response.Content.ReadFromJsonAsync<OpenMeteoForecastResponse>(_jsonOptions, cancellationToken)
                 ?? throw new InvalidOperationException("The weather service returned an empty payload.");
 
             return BuildDashboard(payload);
+        }
+
+        private static Uri BuildForecastUri(double latitude, double longitude)
+        {
+            var builder = new UriBuilder(BaseAddress)
+            {
+                Path = "/v1/forecast",
+                Query = string.Join("&",
+                    $"latitude={latitude:F4}",
+                    $"longitude={longitude:F4}",
+                    "current=temperature_2m,relative_humidity_2m,precipitation_probability,wind_speed_10m,weather_code",
+                    "hourly=temperature_2m,weather_code,precipitation_probability",
+                    "forecast_days=1",
+                    "timezone=auto")
+            };
+
+            if (!string.Equals(builder.Uri.Scheme, Uri.UriSchemeHttps, StringComparison.OrdinalIgnoreCase))
+            {
+                throw new InvalidOperationException("Only HTTPS requests are allowed for the weather API.");
+            }
+
+            return builder.Uri;
         }
 
         private static WeatherDashboard BuildDashboard(OpenMeteoForecastResponse payload)

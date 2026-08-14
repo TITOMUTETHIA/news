@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using news.Services;
+using System.Net.Http.Headers;
 
 namespace news
 {
@@ -16,7 +17,17 @@ namespace news
                 });
 
             builder.Services.AddSingleton<IFormFactor, FormFactor>();
-            builder.Services.AddSingleton<IWeatherService>(sp => new OpenMeteoWeatherService(new HttpClient()));
+            builder.Services.AddSingleton<IWeatherService>(_ =>
+            {
+                var httpClient = new HttpClient
+                {
+                    BaseAddress = new Uri("https://api.open-meteo.com"),
+                    Timeout = TimeSpan.FromSeconds(15)
+                };
+                httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                return new OpenMeteoWeatherService(httpClient);
+            });
+
             builder.Services.AddMauiBlazorWebView();
 
 #if DEBUG
@@ -28,3 +39,4 @@ namespace news
         }
     }
 }
+

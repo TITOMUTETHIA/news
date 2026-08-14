@@ -7,27 +7,26 @@
              xmlns:views="clr-namespace:news.Pages"
              x:Class="news.MainPage"
              BackgroundColor="{DynamicResource PageBackgroundColor}">
-    <ContentPage Title ="Index">
+    <ContentPage Title ="Weather">
          <BlazorWebView HostPage="wwwroot/index.html">
             <BlazorWebView.RootComponents>
-                 <RootComponent Selector="#app" ComponentType="{x:Type views:Index}" />
+                 <RootComponent Selector="#app" ComponentType="{x:Type views:Weather}" />
             </BlazorWebView.RootComponents>
          </BlazorWebView>
     </ContentPage>
 
-    <ContentPage Title ="Counter">
+    <ContentPage Title ="Live Overview">
         <BlazorWebView HostPage="wwwroot/index.html">
             <BlazorWebView.RootComponents>
-                <RootComponent Selector="#app" ComponentType="{x:Type views:Counter}" />
-            </BlazorWebView.RootComponents>     
+                <RootComponent Selector="#app" ComponentType="{x:Type views:LiveOverview}" />
+            </BlazorWebView.RootComponents>
         </BlazorWebView>
     </ContentPage>
 
-
-    <ContentPage Title ="Weather">
+    <ContentPage Title ="Productivity">
         <BlazorWebView HostPage="wwwroot/index.html">
             <BlazorWebView.RootComponents>
-                <RootComponent Selector="#app" ComponentType="{x:Type views:Weather}" />
+                <RootComponent Selector="#app" ComponentType="{x:Type views:Productivity}" />
             </BlazorWebView.RootComponents>
         </BlazorWebView>
     </ContentPage>
