@@ -1,6 +1,8 @@
 ﻿@page "/weather"
 @layout MainLayout
 @using Microsoft.AspNetCore.Components.Web
+@using Microsoft.Maui.ApplicationModel
+@using Microsoft.Maui.Devices.Sensors
 @using news.Services
 @inject IWeatherService WeatherService
 
@@ -19,6 +21,7 @@
                    placeholder="Enter a city or town" />
             <div class="button-row">
                 <button class="primary-button" @onclick="SearchAsync">Search weather</button>
+                <button class="secondary-button" @onclick="UseCurrentLocationAsync">Use my location</button>
                 <button class="secondary-button" @onclick="RefreshAsync">Refresh</button>
             </div>
         </div>
@@ -100,6 +103,50 @@
     private async Task RefreshAsync()
     {
         await LoadWeatherAsync(locationQuery);
+    }
+
+    private async Task UseCurrentLocationAsync()
+    {
+        isLoading = true;
+        errorMessage = null;
+        StateHasChanged();
+
+        try
+        {
+            var status = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
+            if (status != PermissionStatus.Granted)
+            {
+                status = await Permissions.RequestAsync<Permissions.LocationWhenInUse>();
+            }
+
+            if (status != PermissionStatus.Granted)
+            {
+                throw new InvalidOperationException("Location permission was denied. Enable location access to use current location.");
+            }
+
+            var location = await Geolocation.Default.GetLocationAsync(new GeolocationRequest
+            {
+                DesiredAccuracy = GeolocationAccuracy.Medium,
+                Timeout = TimeSpan.FromSeconds(15)
+            });
+
+            if (location is null)
+            {
+                throw new InvalidOperationException("Current location could not be determined.");
+            }
+
+            locationQuery = $"{location.Latitude:F4},{location.Longitude:F4}";
+            dashboard = await WeatherService.GetForecastAsync(location.Latitude, location.Longitude);
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Unable to load weather data for your current location: {ex.Message}";
+        }
+        finally
+        {
+            isLoading = false;
+            StateHasChanged();
+        }
     }
 
     private async Task LoadWeatherAsync(string requestedLocation)
