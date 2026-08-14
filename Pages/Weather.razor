@@ -1,5 +1,6 @@
 ﻿@page "/weather"
 @layout MainLayout
+@using Microsoft.AspNetCore.Components.Web
 @using news.Services
 @inject IWeatherService WeatherService
 
@@ -11,8 +12,15 @@
             <p class="hero-copy">Search for a city to see the latest conditions and hourly outlook.</p>
         </div>
         <div class="search-row">
-            <input class="search-input" @bind="locationQuery" @bind:event="oninput" placeholder="Enter a city or town" />
-            <button class="primary-button" @onclick="ReloadAsync">Search weather</button>
+            <input class="search-input"
+                   value="@locationQuery"
+                   @oninput="OnLocationChanged"
+                   @onkeydown="OnLocationKeyDown"
+                   placeholder="Enter a city or town" />
+            <div class="button-row">
+                <button class="primary-button" @onclick="SearchAsync">Search weather</button>
+                <button class="secondary-button" @onclick="RefreshAsync">Refresh</button>
+            </div>
         </div>
     </section>
 
@@ -69,9 +77,32 @@
     private string? errorMessage;
     private string locationQuery = "Berlin";
 
-    protected override async Task OnInitializedAsync() => await ReloadAsync();
+    protected override async Task OnInitializedAsync() => await SearchAsync();
 
-    private async Task ReloadAsync()
+    private void OnLocationChanged(ChangeEventArgs e)
+    {
+        locationQuery = e.Value?.ToString() ?? string.Empty;
+    }
+
+    private async Task OnLocationKeyDown(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            await SearchAsync();
+        }
+    }
+
+    private async Task SearchAsync()
+    {
+        await LoadWeatherAsync(locationQuery);
+    }
+
+    private async Task RefreshAsync()
+    {
+        await LoadWeatherAsync(locationQuery);
+    }
+
+    private async Task LoadWeatherAsync(string requestedLocation)
     {
         isLoading = true;
         errorMessage = null;
@@ -79,7 +110,12 @@
 
         try
         {
-            dashboard = await WeatherService.GetForecastAsync(locationQuery);
+            var effectiveLocation = string.IsNullOrWhiteSpace(requestedLocation)
+                ? "Berlin"
+                : requestedLocation.Trim();
+
+            locationQuery = effectiveLocation;
+            dashboard = await WeatherService.GetForecastAsync(effectiveLocation);
         }
         catch (Exception ex)
         {
