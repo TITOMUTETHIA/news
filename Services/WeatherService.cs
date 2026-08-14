@@ -7,11 +7,13 @@ namespace news.Services
     public interface IWeatherService
     {
         Task<WeatherDashboard> GetForecastAsync(double latitude, double longitude, CancellationToken cancellationToken = default);
+        Task<WeatherDashboard> GetForecastAsync(string location, CancellationToken cancellationToken = default);
     }
 
     public sealed class OpenMeteoWeatherService : IWeatherService
     {
         private const string BaseAddress = "https://api.open-meteo.com";
+        private const string GeocodingBaseAddress = "https://geocoding-api.open-meteo.com";
         private readonly HttpClient _httpClient;
         private readonly JsonSerializerOptions _jsonOptions = new()
         {
@@ -41,7 +43,30 @@ namespace news.Services
             }
 
             var uri = BuildForecastUri(latitude, longitude);
-            using var request = new HttpRequestMessage(HttpMethod.Get, uri);
+            return await GetForecastCoreAsync(uri, "Unknown location", cancellationToken);
+        }
+
+        public async Task<WeatherDashboard> GetForecastAsync(string location, CancellationToken cancellationToken = default)
+        {
+            if (string.IsNullOrWhiteSpace(location))
+            {
+                throw new ArgumentException("A location is required.", nameof(location));
+            }
+
+            var trimmedLocation = location.Trim();
+            if (trimmedLocation.Length > 200)
+            {
+                throw new ArgumentOutOfRangeException(nameof(location), "The location name is too long.");
+            }
+
+            var coordinates = await ResolveCoordinatesAsync(trimmedLocation, cancellationToken);
+            var uri = BuildForecastUri(coordinates.Latitude, coordinates.Longitude);
+            return await GetForecastCoreAsync(uri, coordinates.Name, cancellationToken);
+        }
+
+        private async Task<WeatherDashboard> GetForecastCoreAsync(Uri requestUri, string locationName, CancellationToken cancellationToken)
+        {
+            using var request = new HttpRequestMessage(HttpMethod.Get, requestUri);
             request.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
             using var response = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
@@ -50,7 +75,30 @@ namespace news.Services
             var payload = await response.Content.ReadFromJsonAsync<OpenMeteoForecastResponse>(_jsonOptions, cancellationToken)
                 ?? throw new InvalidOperationException("The weather service returned an empty payload.");
 
-            return BuildDashboard(payload);
+            return BuildDashboard(payload, locationName);
+        }
+
+        private async Task<(double Latitude, double Longitude, string Name)> ResolveCoordinatesAsync(string location, CancellationToken cancellationToken)
+        {
+            var encodedLocation = Uri.EscapeDataString(location);
+            var uri = $"{GeocodingBaseAddress}/v1/search?name={encodedLocation}&count=1&language=en&format=json";
+
+            using var request = new HttpRequestMessage(HttpMethod.Get, uri);
+            request.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+            using var response = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
+            response.EnsureSuccessStatusCode();
+
+            var payload = await response.Content.ReadFromJsonAsync<OpenMeteoGeocodingResponse>(_jsonOptions, cancellationToken)
+                ?? throw new InvalidOperationException("The location lookup returned no results.");
+
+            var match = payload.Results?.FirstOrDefault();
+            if (match is null)
+            {
+                throw new InvalidOperationException($"No weather data could be found for '{location}'.");
+            }
+
+            return (match.Latitude ?? 0, match.Longitude ?? 0, match.Name ?? match.AdministrativeDivision ?? location);
         }
 
         private static Uri BuildForecastUri(double latitude, double longitude)
@@ -75,7 +123,7 @@ namespace news.Services
             return builder.Uri;
         }
 
-        private static WeatherDashboard BuildDashboard(OpenMeteoForecastResponse payload)
+        private static WeatherDashboard BuildDashboard(OpenMeteoForecastResponse payload, string locationName)
         {
             var current = payload.Current ?? throw new InvalidOperationException("Current weather data was not returned.");
             var hourly = payload.Hourly ?? throw new InvalidOperationException("Hourly forecast data was not returned.");
@@ -97,7 +145,7 @@ namespace news.Services
             }
 
             return new WeatherDashboard(
-                City: "Berlin",
+                City: string.IsNullOrWhiteSpace(locationName) ? "Your location" : locationName,
                 Condition: GetConditionText(current.WeatherCode ?? 0),
                 TemperatureC: current.Temperature2M ?? 0,
                 FeelsLikeC: current.Temperature2M ?? 0,
@@ -215,5 +263,26 @@ namespace news.Services
 
         [JsonPropertyName("precipitation_probability")]
         public double[]? PrecipitationProbability { get; init; }
+    }
+
+    internal sealed class OpenMeteoGeocodingResponse
+    {
+        [JsonPropertyName("results")]
+        public OpenMeteoLocationResult[]? Results { get; init; }
+    }
+
+    internal sealed class OpenMeteoLocationResult
+    {
+        [JsonPropertyName("name")]
+        public string? Name { get; init; }
+
+        [JsonPropertyName("latitude")]
+        public double? Latitude { get; init; }
+
+        [JsonPropertyName("longitude")]
+        public double? Longitude { get; init; }
+
+        [JsonPropertyName("admin1")]
+        public string? AdministrativeDivision { get; init; }
     }
 }

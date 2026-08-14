@@ -8,9 +8,12 @@
         <div>
             <p class="eyebrow">Weather forecast</p>
             <h2>Live conditions for your day</h2>
-            <p class="hero-copy">This view uses Open-Meteo data to provide a reliable, up-to-date forecast with a polished experience.</p>
+            <p class="hero-copy">Search for a city to see the latest conditions and hourly outlook.</p>
         </div>
-        <button class="primary-button" @onclick="ReloadAsync">Refresh</button>
+        <div class="search-row">
+            <input class="search-input" @bind="locationQuery" @bind:event="oninput" placeholder="Enter a city or town" />
+            <button class="primary-button" @onclick="ReloadAsync">Search weather</button>
+        </div>
     </section>
 
     @if (isLoading)
@@ -64,6 +67,7 @@
     private WeatherDashboard? dashboard;
     private bool isLoading;
     private string? errorMessage;
+    private string locationQuery = "Berlin";
 
     protected override async Task OnInitializedAsync() => await ReloadAsync();
 
@@ -75,7 +79,7 @@
 
         try
         {
-            dashboard = await WeatherService.GetForecastAsync(52.52, 13.4050);
+            dashboard = await WeatherService.GetForecastAsync(locationQuery);
         }
         catch (Exception ex)
         {
