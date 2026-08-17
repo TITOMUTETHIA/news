@@ -1,16 +1,29 @@
 ﻿@page "/"
 @layout MainLayout
+@using Microsoft.AspNetCore.Components.Web
+@using Microsoft.Maui.ApplicationModel
+@using Microsoft.Maui.Devices.Sensors
 @using news.Services
 @inject IWeatherService WeatherService
 
 <div class="dashboard-page">
-    <section class="hero-card">
+    <section class="hero-card hero-panel">
         <div>
             <p class="eyebrow">Live overview</p>
             <h2>Stay ahead of the day</h2>
-            <p class="hero-copy">A clean, modern dashboard that gives you fast weather context and a polished first impression.</p>
+            <p class="hero-copy">Real-time weather and conditions for your location.</p>
         </div>
-        <button class="primary-button" @onclick="ReloadAsync">Refresh</button>
+        <div class="search-row">
+            <input class="search-input"
+                   value="@locationQuery"
+                   @oninput="OnLocationChanged"
+                   @onkeydown="OnLocationKeyDown"
+                   placeholder="Enter a city or town" />
+            <div class="button-row">
+                <button class="primary-button" @onclick="SearchAsync">Search</button>
+                <button class="secondary-button" @onclick="UseCurrentLocationAsync">My location</button>
+            </div>
+        </div>
     </section>
 
     @if (isLoading)
@@ -28,6 +41,7 @@
                 <p class="eyebrow">Now in @dashboard.City</p>
                 <h3>@dashboard.Condition</h3>
                 <p class="hero-copy">@dashboard.Summary</p>
+                <p class="forecast-time">Updated @currentDateTime.ToString("dddd, MMMM d, yyyy · h:mm tt")</p>
             </div>
             <div class="metric-stack">
                 <div class="metric-pill">🌡 @dashboard.TemperatureC.ToString("0")°C</div>
@@ -52,11 +66,11 @@
             </article>
 
             <article class="info-card">
-                <div class="card-title">Highlights</div>
+                <div class="card-title">Conditions</div>
                 <div class="list-stack">
                     <div class="list-row"><span>Feels like</span><strong>@dashboard.FeelsLikeC.ToString("0")°C</strong></div>
                     <div class="list-row"><span>Rain chance</span><strong>@dashboard.PrecipitationChance.ToString("0")%</strong></div>
-                    <div class="list-row"><span>Pressure</span><strong>1014 hPa</strong></div>
+                    <div class="list-row"><span>Wind gust</span><strong>@(dashboard.WindKph * 1.4).ToString("0") km/h</strong></div>
                 </div>
             </article>
         </section>
@@ -67,10 +81,34 @@
     private WeatherDashboard? dashboard;
     private bool isLoading;
     private string? errorMessage;
+    private string locationQuery = "Berlin";
+    private DateTime currentDateTime = DateTime.Now;
 
-    protected override async Task OnInitializedAsync() => await ReloadAsync();
+    protected override async Task OnInitializedAsync()
+    {
+        currentDateTime = DateTime.Now;
+        await SearchAsync();
+    }
 
-    private async Task ReloadAsync()
+    private void OnLocationChanged(ChangeEventArgs e)
+    {
+        locationQuery = e.Value?.ToString() ?? string.Empty;
+    }
+
+    private async Task OnLocationKeyDown(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            await SearchAsync();
+        }
+    }
+
+    private async Task SearchAsync()
+    {
+        await LoadWeatherAsync(locationQuery);
+    }
+
+    private async Task UseCurrentLocationAsync()
     {
         isLoading = true;
         errorMessage = null;
@@ -78,7 +116,58 @@
 
         try
         {
-            dashboard = await WeatherService.GetForecastAsync(52.52, 13.4050);
+            var status = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
+            if (status != PermissionStatus.Granted)
+            {
+                status = await Permissions.RequestAsync<Permissions.LocationWhenInUse>();
+            }
+
+            if (status != PermissionStatus.Granted)
+            {
+                throw new InvalidOperationException("Location permission was denied.");
+            }
+
+            var location = await Geolocation.Default.GetLocationAsync(new GeolocationRequest
+            {
+                DesiredAccuracy = GeolocationAccuracy.Medium,
+                Timeout = TimeSpan.FromSeconds(15)
+            });
+
+            if (location is null)
+            {
+                throw new InvalidOperationException("Current location could not be determined.");
+            }
+
+            locationQuery = await WeatherService.ResolveLocationNameAsync(location.Latitude, location.Longitude);
+            currentDateTime = DateTime.Now;
+            dashboard = await WeatherService.GetForecastAsync(location.Latitude, location.Longitude);
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Unable to access your location: {ex.Message}";
+        }
+        finally
+        {
+            isLoading = false;
+            StateHasChanged();
+        }
+    }
+
+    private async Task LoadWeatherAsync(string requestedLocation)
+    {
+        isLoading = true;
+        errorMessage = null;
+        StateHasChanged();
+
+        try
+        {
+            var effectiveLocation = string.IsNullOrWhiteSpace(requestedLocation)
+                ? "Berlin"
+                : requestedLocation.Trim();
+
+            locationQuery = effectiveLocation;
+            currentDateTime = DateTime.Now;
+            dashboard = await WeatherService.GetForecastAsync(effectiveLocation);
         }
         catch (Exception ex)
         {

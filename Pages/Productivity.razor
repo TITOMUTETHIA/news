@@ -1,32 +1,148 @@
 ﻿@page "/productivity"
 @layout MainLayout
+@using news.Services
+@inject IWeatherService WeatherService
 
 <div class="dashboard-page">
     <section class="hero-card">
         <div>
             <p class="eyebrow">Quick actions</p>
             <h2>Productivity at a glance</h2>
-            <p class="hero-copy">This page now follows the same polished card structure as the rest of the app.</p>
+            <p class="hero-copy">Real-time insights for a productive day. Today is @currentDateTime.ToString("dddd, MMMM d").</p>
         </div>
     </section>
 
-    <section class="content-grid">
-        <article class="info-card">
-            <div class="card-title">Daily focus</div>
-            <div class="list-stack">
-                <div class="list-row"><span>Review sprint plan</span><strong>09:00</strong></div>
-                <div class="list-row"><span>Design review</span><strong>11:30</strong></div>
-                <div class="list-row"><span>Send updates</span><strong>16:00</strong></div>
-            </div>
-        </article>
+    @if (isLoading)
+    {
+        <div class="status-card">Loading productivity data…</div>
+    }
+    else if (errorMessage is not null)
+    {
+        <div class="status-card error">@errorMessage</div>
+    }
+    else
+    {
+        <section class="content-grid">
+            <article class="info-card">
+                <div class="card-title">Focus blocks</div>
+                <div class="list-stack">
+                    <div class="list-row"><span>🧘 Morning focus</span><strong>08:00 - 11:00</strong></div>
+                    <div class="list-row"><span>⚡ Peak hours</span><strong>10:00 - 14:00</strong></div>
+                    <div class="list-row"><span>🌙 Evening wind-down</span><strong>17:00 - 18:00</strong></div>
+                </div>
+            </article>
 
-        <article class="info-card">
-            <div class="card-title">Progress</div>
-            <div class="list-stack">
-                <div class="list-row"><span>Tasks completed</span><strong>14/18</strong></div>
-                <div class="list-row"><span>Momentum</span><strong>High</strong></div>
-                <div class="list-row"><span>Focus score</span><strong>91%</strong></div>
-            </div>
-        </article>
-    </section>
+            <article class="info-card">
+                <div class="card-title">Progress today</div>
+                <div class="list-stack">
+                    <div class="list-row"><span>Tasks completed</span><strong>@tasksCompleted/@tasksTotal</strong></div>
+                    <div class="list-row"><span>Time spent focused</span><strong>@focusHours.ToString("F1") hrs</strong></div>
+                    <div class="list-row"><span>Productivity score</span><strong>@productivityScore</strong></div>
+                </div>
+            </article>
+        </section>
+
+        @if (dashboard is not null)
+        {
+            <section class="content-grid">
+                <article class="info-card">
+                    <div class="card-title">Weather impact</div>
+                    <div class="list-stack">
+                        <div class="list-row"><span>Condition</span><strong>@dashboard.Condition</strong></div>
+                        <div class="list-row"><span>Temperature</span><strong>@dashboard.TemperatureC.ToString("0")°C</strong></div>
+                        <div class="list-row"><span>Recommendation</span><strong>@GetWeatherRecommendation()</strong></div>
+                    </div>
+                </article>
+
+                <article class="info-card">
+                    <div class="card-title">Optimal breaks</div>
+                    <div class="list-stack">
+                        <div class="list-row"><span>Walk break</span><strong>@GetOptimalBreakTime()</strong></div>
+                        <div class="list-row"><span>Hydration</span><strong>Every 90 min</strong></div>
+                        <div class="list-row"><span>Outdoor time</span><strong>@GetOutdoorRecommendation()</strong></div>
+                    </div>
+                </article>
+            </section>
+        }
+    }
 </div>
+
+@code {
+    private WeatherDashboard? dashboard;
+    private bool isLoading;
+    private string? errorMessage;
+    private DateTime currentDateTime = DateTime.Now;
+    private int tasksCompleted = 0;
+    private int tasksTotal = 8;
+    private double focusHours = 0;
+    private string productivityScore = "Excellent";
+
+    protected override async Task OnInitializedAsync()
+    {
+        currentDateTime = DateTime.Now;
+        await LoadProductivityData();
+    }
+
+    private async Task LoadProductivityData()
+    {
+        isLoading = true;
+        errorMessage = null;
+        StateHasChanged();
+
+        try
+        {
+            dashboard = await WeatherService.GetForecastAsync(52.52, 13.4050);
+            
+            tasksCompleted = (int)(currentDateTime.Hour / 3) + 1;
+            tasksCompleted = Math.Min(tasksCompleted, tasksTotal);
+            focusHours = (currentDateTime.Hour - 8) * 0.7;
+            focusHours = Math.Max(0, focusHours);
+            
+            productivityScore = CalculateProductivityScore();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Unable to load data: {ex.Message}";
+        }
+        finally
+        {
+            isLoading = false;
+            StateHasChanged();
+        }
+    }
+
+    private string CalculateProductivityScore()
+    {
+        var hour = currentDateTime.Hour;
+        return (hour >= 9 && hour <= 14) ? "Excellent" : 
+               (hour >= 8 && hour <= 17) ? "Good" : 
+               "Low";
+    }
+
+    private string GetWeatherRecommendation()
+    {
+        if (dashboard is null) return "N/A";
+        
+        return dashboard.WindKph > 20 ? "Work indoors" :
+               dashboard.PrecipitationChance > 70 ? "Stay focused indoors" :
+               dashboard.TemperatureC > 28 ? "Take breaks, stay cool" :
+               "Great conditions";
+    }
+
+    private string GetOptimalBreakTime()
+    {
+        var hour = currentDateTime.Hour;
+        var nextBreakHour = ((hour - 8) / 2 + 1) * 2 + 8;
+        if (nextBreakHour > 17) nextBreakHour = 17;
+        return $"{nextBreakHour}:00";
+    }
+
+    private string GetOutdoorRecommendation()
+    {
+        if (dashboard is null) return "Check weather";
+        
+        return dashboard.PrecipitationChance < 30 && dashboard.TemperatureC >= 15 && dashboard.TemperatureC <= 25
+            ? "Recommended"
+            : "Indoor preferred";
+    }
+}

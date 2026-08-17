@@ -4,13 +4,13 @@
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\app.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"0kgarztqjr"},{"Name":"integrity","Value":"sha256-UCmmhXfmGG1MktlW1n\u002BE4GIXHTXTcJXKoJS4fkKDll8="},{"Name":"label","Value":"app.css"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"4400"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022UCmmhXfmGG1MktlW1n\u002BE4GIXHTXTcJXKoJS4fkKDll8=\u0022"},{"Name":"Last-Modified","Value":"Mon, 17 Aug 2026 13:11:09 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"4400"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022UCmmhXfmGG1MktlW1n\u002BE4GIXHTXTcJXKoJS4fkKDll8=\u0022"},{"Name":"Last-Modified","Value":"Mon, 17 Aug 2026 13:11:51 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="app.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\app.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-UCmmhXfmGG1MktlW1n\u002BE4GIXHTXTcJXKoJS4fkKDll8="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"4400"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022UCmmhXfmGG1MktlW1n\u002BE4GIXHTXTcJXKoJS4fkKDll8=\u0022"},{"Name":"Last-Modified","Value":"Mon, 17 Aug 2026 13:11:09 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"4400"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022UCmmhXfmGG1MktlW1n\u002BE4GIXHTXTcJXKoJS4fkKDll8=\u0022"},{"Name":"Last-Modified","Value":"Mon, 17 Aug 2026 13:11:51 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="index.html">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\index.html'))</AssetFile>
