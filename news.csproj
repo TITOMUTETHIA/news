@@ -27,10 +27,10 @@
     <MauiXamlInflator>SourceGen</MauiXamlInflator>
 
     <!-- Display name -->
-    <ApplicationTitle>news</ApplicationTitle>
+    <ApplicationTitle>Weather App</ApplicationTitle>
 
     <!-- App Identifier -->
-    <ApplicationId>com.companyname.news</ApplicationId>
+    <ApplicationId>com.companyname.weatherapp</ApplicationId>
 
     <!-- Versions -->
     <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
