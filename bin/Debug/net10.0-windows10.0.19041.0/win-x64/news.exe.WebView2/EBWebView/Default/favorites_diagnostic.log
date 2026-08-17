@@ -45,3 +45,21 @@
 2026-08-14 09:28:46.968: [INFO] BookmarksLoadDropped droppedNodes=0
 2026-08-14 09:28:46.968: [INFO] BookmarksSnapshot Startup total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
 2026-08-14 09:29:52.777: [INFO] BookmarksSnapshot Shutdown total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-08-14 09:55:22.342: [INFO] CurrentProfilePath: C:\Users\ADMIN\OneDrive - Chrome Partners\Desktop\WORKING FOLDER\tito\news\news\bin\Debug\net10.0-windows10.0.19041.0\win-x64\news.exe.WebView2\EBWebView\Default
+2026-08-14 09:55:22.342: [INFO] Profiles total count: 1
+2026-08-14 09:55:22.343: [INFO] Profile: name=Profile 1 path=C:\Users\ADMIN\OneDrive - Chrome Partners\Desktop\WORKING FOLDER\tito\news\news\bin\Debug\net10.0-windows10.0.19041.0\win-x64\news.exe.WebView2\EBWebView\Default lastActive=2026-08-14T09:29:41.329Z
+2026-08-14 09:55:22.343: [INFO] LastUsedProfileDir: C:\Users\ADMIN\OneDrive - Chrome Partners\Desktop\WORKING FOLDER\tito\news\news\bin\Debug\net10.0-windows10.0.19041.0\win-x64\news.exe.WebView2\EBWebView\Default
+2026-08-14 09:55:22.343: [INFO] MostRecentlyActiveProfile: name=Profile 1 path=C:\Users\ADMIN\OneDrive - Chrome Partners\Desktop\WORKING FOLDER\tito\news\news\bin\Debug\net10.0-windows10.0.19041.0\win-x64\news.exe.WebView2\EBWebView\Default lastActive=2026-08-14T09:29:41.329Z
+2026-08-14 09:55:22.343: [INFO] OnDoneLoading sync enabled: 0
+2026-08-14 09:55:22.343: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2026-08-14 09:55:22.343: [INFO] BookmarksLoadDropped droppedNodes=0
+2026-08-14 09:55:22.343: [INFO] BookmarksSnapshot Startup total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-08-17 12:51:09.273: [INFO] CurrentProfilePath: C:\Users\ADMIN\OneDrive - Chrome Partners\Desktop\WORKING FOLDER\tito\news\news\bin\Debug\net10.0-windows10.0.19041.0\win-x64\news.exe.WebView2\EBWebView\Default
+2026-08-17 12:51:09.273: [INFO] Profiles total count: 1
+2026-08-17 12:51:09.274: [INFO] Profile: name=Profile 1 path=C:\Users\ADMIN\OneDrive - Chrome Partners\Desktop\WORKING FOLDER\tito\news\news\bin\Debug\net10.0-windows10.0.19041.0\win-x64\news.exe.WebView2\EBWebView\Default lastActive=2026-08-14T09:56:05.302Z
+2026-08-17 12:51:09.274: [INFO] LastUsedProfileDir: C:\Users\ADMIN\OneDrive - Chrome Partners\Desktop\WORKING FOLDER\tito\news\news\bin\Debug\net10.0-windows10.0.19041.0\win-x64\news.exe.WebView2\EBWebView\Default
+2026-08-17 12:51:09.274: [INFO] MostRecentlyActiveProfile: name=Profile 1 path=C:\Users\ADMIN\OneDrive - Chrome Partners\Desktop\WORKING FOLDER\tito\news\news\bin\Debug\net10.0-windows10.0.19041.0\win-x64\news.exe.WebView2\EBWebView\Default lastActive=2026-08-14T09:56:05.302Z
+2026-08-17 12:51:09.274: [INFO] OnDoneLoading sync enabled: 0
+2026-08-17 12:51:09.274: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2026-08-17 12:51:09.274: [INFO] BookmarksLoadDropped droppedNodes=0
+2026-08-17 12:51:09.274: [INFO] BookmarksSnapshot Startup total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1

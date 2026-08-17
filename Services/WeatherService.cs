@@ -8,6 +8,7 @@ namespace news.Services
     {
         Task<WeatherDashboard> GetForecastAsync(double latitude, double longitude, CancellationToken cancellationToken = default);
         Task<WeatherDashboard> GetForecastAsync(string location, CancellationToken cancellationToken = default);
+        Task<string> ResolveLocationNameAsync(double latitude, double longitude, CancellationToken cancellationToken = default);
     }
 
     public sealed class OpenMeteoWeatherService : IWeatherService
@@ -100,6 +101,50 @@ namespace news.Services
 
             return (match.Latitude ?? 0, match.Longitude ?? 0, match.Name ?? match.AdministrativeDivision ?? location);
         }
+
+        public async Task<string> ResolveLocationNameAsync(double latitude, double longitude, CancellationToken cancellationToken = default)
+        {
+            if (double.IsNaN(latitude) || double.IsNaN(longitude) ||
+                double.IsInfinity(latitude) || double.IsInfinity(longitude) ||
+                latitude < -90 || latitude > 90 ||
+                longitude < -180 || longitude > 180)
+            {
+                throw new ArgumentOutOfRangeException(nameof(latitude), "Latitude and longitude values must fall within valid global ranges.");
+            }
+
+            return await ReverseGeocodeAsync(latitude, longitude, cancellationToken);
+        }
+
+        private async Task<string> ReverseGeocodeAsync(double latitude, double longitude, CancellationToken cancellationToken)
+        {
+            var uri = $"{GeocodingBaseAddress}/v1/reverse?latitude={latitude:F4}&longitude={longitude:F4}&language=en&format=json";
+
+            using var request = new HttpRequestMessage(HttpMethod.Get, uri);
+            request.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+            using var response = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
+            response.EnsureSuccessStatusCode();
+
+            var payload = await response.Content.ReadFromJsonAsync<OpenMeteoReverseGeocodingResponse>(_jsonOptions, cancellationToken)
+                ?? throw new InvalidOperationException("The reverse geocoding lookup returned no results.");
+
+            var location = payload.Results?.FirstOrDefault();
+            if (location is null)
+            {
+                return $"{latitude:F2}, {longitude:F2}";
+            }
+
+            var parts = new List<string>();
+            if (!string.IsNullOrWhiteSpace(location.Name))
+                parts.Add(location.Name);
+            if (!string.IsNullOrWhiteSpace(location.AdministrativeDivision))
+                parts.Add(location.AdministrativeDivision);
+            if (!string.IsNullOrWhiteSpace(location.Country))
+                parts.Add(location.Country);
+
+            return parts.Count > 0 ? string.Join(", ", parts) : $"{latitude:F2}, {longitude:F2}";
+        }
+
 
         private static Uri BuildForecastUri(double latitude, double longitude)
         {
@@ -285,4 +330,23 @@ namespace news.Services
         [JsonPropertyName("admin1")]
         public string? AdministrativeDivision { get; init; }
     }
+
+    internal sealed class OpenMeteoReverseGeocodingResponse
+    {
+        [JsonPropertyName("results")]
+        public OpenMeteoReverseLocationResult[]? Results { get; init; }
+    }
+
+    internal sealed class OpenMeteoReverseLocationResult
+    {
+        [JsonPropertyName("name")]
+        public string? Name { get; init; }
+
+        [JsonPropertyName("admin1")]
+        public string? AdministrativeDivision { get; init; }
+
+        [JsonPropertyName("country")]
+        public string? Country { get; init; }
+    }
 }
+

@@ -135,7 +135,7 @@
                 throw new InvalidOperationException("Current location could not be determined.");
             }
 
-            locationQuery = $"{location.Latitude:F4},{location.Longitude:F4}";
+            locationQuery = await WeatherService.ResolveLocationNameAsync(location.Latitude, location.Longitude);
             dashboard = await WeatherService.GetForecastAsync(location.Latitude, location.Longitude);
         }
         catch (Exception ex)
