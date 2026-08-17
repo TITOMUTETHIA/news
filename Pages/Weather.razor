@@ -42,6 +42,7 @@
                 <p class="eyebrow">Now in @dashboard.City</p>
                 <h3>@dashboard.Condition</h3>
                 <p class="hero-copy">@dashboard.Summary</p>
+                <p class="forecast-time">Updated @currentDateTime.ToString("dddd, MMMM d, yyyy · h:mm tt")</p>
             </div>
             <div class="temp-badge">@dashboard.TemperatureC.ToString("0")°C</div>
         </section>
@@ -79,8 +80,13 @@
     private bool isLoading;
     private string? errorMessage;
     private string locationQuery = "Berlin";
+    private DateTime currentDateTime = DateTime.Now;
 
-    protected override async Task OnInitializedAsync() => await SearchAsync();
+    protected override async Task OnInitializedAsync()
+    {
+        currentDateTime = DateTime.Now;
+        await SearchAsync();
+    }
 
     private void OnLocationChanged(ChangeEventArgs e)
     {
@@ -136,6 +142,7 @@
             }
 
             locationQuery = await WeatherService.ResolveLocationNameAsync(location.Latitude, location.Longitude);
+            currentDateTime = DateTime.Now;
             dashboard = await WeatherService.GetForecastAsync(location.Latitude, location.Longitude);
         }
         catch (Exception ex)
@@ -162,6 +169,7 @@
                 : requestedLocation.Trim();
 
             locationQuery = effectiveLocation;
+            currentDateTime = DateTime.Now;
             dashboard = await WeatherService.GetForecastAsync(effectiveLocation);
         }
         catch (Exception ex)

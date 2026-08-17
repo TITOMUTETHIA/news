@@ -59,6 +59,13 @@
     color: #ffffff;
 }
 
+.forecast-time {
+    margin: 0.5rem 0 0;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.75);
+    font-weight: 500;
+}
+
 .hero-copy {
     margin: 0;
     color: #475569;
