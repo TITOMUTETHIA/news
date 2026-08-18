@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ADMIN\\OneDrive - Chrome Partners\\Desktop\\WORKING FOLDER\\tito\\news\\news\\news.csproj": {}
+    "c:\\Users\\ADMIN\\OneDrive - Chrome Partners\\Desktop\\WORKING FOLDER\\tito\\news\\news\\news.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ADMIN\\OneDrive - Chrome Partners\\Desktop\\WORKING FOLDER\\tito\\news\\news\\news.csproj": {
+    "c:\\Users\\ADMIN\\OneDrive - Chrome Partners\\Desktop\\WORKING FOLDER\\tito\\news\\news\\news.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ADMIN\\OneDrive - Chrome Partners\\Desktop\\WORKING FOLDER\\tito\\news\\news\\news.csproj",
+        "projectUniqueName": "c:\\Users\\ADMIN\\OneDrive - Chrome Partners\\Desktop\\WORKING FOLDER\\tito\\news\\news\\news.csproj",
         "projectName": "news",
-        "projectPath": "C:\\Users\\ADMIN\\OneDrive - Chrome Partners\\Desktop\\WORKING FOLDER\\tito\\news\\news\\news.csproj",
+        "projectPath": "c:\\Users\\ADMIN\\OneDrive - Chrome Partners\\Desktop\\WORKING FOLDER\\tito\\news\\news\\news.csproj",
         "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ADMIN\\OneDrive - Chrome Partners\\Desktop\\WORKING FOLDER\\tito\\news\\news\\obj\\",
+        "outputPath": "c:\\Users\\ADMIN\\OneDrive - Chrome Partners\\Desktop\\WORKING FOLDER\\tito\\news\\news\\obj\\",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "configFilePaths": [

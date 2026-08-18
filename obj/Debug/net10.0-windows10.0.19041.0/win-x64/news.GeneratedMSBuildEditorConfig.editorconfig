@@ -13,9 +13,9 @@ build_property.InvariantGlobalization =
 build_property.PlatformNeutralAssembly = 
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
-build_property.RootNamespace = Weather App
-build_property.RootNamespace = Weather App
-build_property.ProjectDir = C:\Users\ADMIN\OneDrive - Chrome Partners\Desktop\WORKING FOLDER\tito\news\news\
+build_property.RootNamespace = news
+build_property.RootNamespace = news
+build_property.ProjectDir = c:\Users\ADMIN\OneDrive - Chrome Partners\Desktop\WORKING FOLDER\tito\news\news\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.CsWinRTAotOptimizerEnabled = true
@@ -29,14 +29,14 @@ build_property.CsWinRTUseWindowsUIXamlProjections = false
 build_property.RazorLangVersion = 9.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\ADMIN\OneDrive - Chrome Partners\Desktop\WORKING FOLDER\tito\news\news
+build_property.MSBuildProjectDirectory = c:\Users\ADMIN\OneDrive - Chrome Partners\Desktop\WORKING FOLDER\tito\news\news
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 10.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/ADMIN/OneDrive - Chrome Partners/Desktop/WORKING FOLDER/tito/news/news/App.xaml]
+[c:/Users/ADMIN/OneDrive - Chrome Partners/Desktop/WORKING FOLDER/tito/news/news/App.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
-build_metadata.AdditionalFiles.ManifestResourceName = Weather App.App.xaml
+build_metadata.AdditionalFiles.ManifestResourceName = news.App.xaml
 build_metadata.AdditionalFiles.TargetPath = App.xaml
 build_metadata.AdditionalFiles.RelativePath = App.xaml
 build_metadata.AdditionalFiles.Inflator = SourceGen
@@ -45,9 +45,9 @@ build_metadata.AdditionalFiles.EnableDiagnostics =
 build_metadata.AdditionalFiles.LineInfo = 
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/OneDrive - Chrome Partners/Desktop/WORKING FOLDER/tito/news/news/MainPage.xaml]
+[c:/Users/ADMIN/OneDrive - Chrome Partners/Desktop/WORKING FOLDER/tito/news/news/MainPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
-build_metadata.AdditionalFiles.ManifestResourceName = Weather App.MainPage.xaml
+build_metadata.AdditionalFiles.ManifestResourceName = news.MainPage.xaml
 build_metadata.AdditionalFiles.TargetPath = MainPage.xaml
 build_metadata.AdditionalFiles.RelativePath = MainPage.xaml
 build_metadata.AdditionalFiles.Inflator = SourceGen
@@ -56,7 +56,7 @@ build_metadata.AdditionalFiles.EnableDiagnostics =
 build_metadata.AdditionalFiles.LineInfo = 
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/OneDrive - Chrome Partners/Desktop/WORKING FOLDER/tito/news/news/Components/_Imports.razor]
+[c:/Users/ADMIN/OneDrive - Chrome Partners/Desktop/WORKING FOLDER/tito/news/news/Components/_Imports.razor]
 build_metadata.AdditionalFiles.GenKind = 
 build_metadata.AdditionalFiles.ManifestResourceName = 
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xfSW1wb3J0cy5yYXpvcg==
@@ -67,7 +67,7 @@ build_metadata.AdditionalFiles.EnableDiagnostics =
 build_metadata.AdditionalFiles.LineInfo = 
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/OneDrive - Chrome Partners/Desktop/WORKING FOLDER/tito/news/news/Pages/LiveOverview.razor]
+[c:/Users/ADMIN/OneDrive - Chrome Partners/Desktop/WORKING FOLDER/tito/news/news/Pages/LiveOverview.razor]
 build_metadata.AdditionalFiles.GenKind = 
 build_metadata.AdditionalFiles.ManifestResourceName = 
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTGl2ZU92ZXJ2aWV3LnJhem9y
@@ -78,7 +78,7 @@ build_metadata.AdditionalFiles.EnableDiagnostics =
 build_metadata.AdditionalFiles.LineInfo = 
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/OneDrive - Chrome Partners/Desktop/WORKING FOLDER/tito/news/news/Pages/Productivity.razor]
+[c:/Users/ADMIN/OneDrive - Chrome Partners/Desktop/WORKING FOLDER/tito/news/news/Pages/Productivity.razor]
 build_metadata.AdditionalFiles.GenKind = 
 build_metadata.AdditionalFiles.ManifestResourceName = 
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjdGl2aXR5LnJhem9y
@@ -89,7 +89,7 @@ build_metadata.AdditionalFiles.EnableDiagnostics =
 build_metadata.AdditionalFiles.LineInfo = 
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/OneDrive - Chrome Partners/Desktop/WORKING FOLDER/tito/news/news/Pages/Weather.razor]
+[c:/Users/ADMIN/OneDrive - Chrome Partners/Desktop/WORKING FOLDER/tito/news/news/Pages/Weather.razor]
 build_metadata.AdditionalFiles.GenKind = 
 build_metadata.AdditionalFiles.ManifestResourceName = 
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcV2VhdGhlci5yYXpvcg==
@@ -100,7 +100,7 @@ build_metadata.AdditionalFiles.EnableDiagnostics =
 build_metadata.AdditionalFiles.LineInfo = 
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/OneDrive - Chrome Partners/Desktop/WORKING FOLDER/tito/news/news/Components/Layout/MainLayout.razor]
+[c:/Users/ADMIN/OneDrive - Chrome Partners/Desktop/WORKING FOLDER/tito/news/news/Components/Layout/MainLayout.razor]
 build_metadata.AdditionalFiles.GenKind = 
 build_metadata.AdditionalFiles.ManifestResourceName = 
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTWFpbkxheW91dC5yYXpvcg==

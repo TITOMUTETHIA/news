@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "sGfCdYrnfHs=",
+  "dgSpecHash": "UHYoR1ubCdk=",
   "success": true,
-  "projectFilePath": "C:\\Users\\ADMIN\\OneDrive - Chrome Partners\\Desktop\\WORKING FOLDER\\tito\\news\\news\\news.csproj",
+  "projectFilePath": "c:\\Users\\ADMIN\\OneDrive - Chrome Partners\\Desktop\\WORKING FOLDER\\tito\\news\\news\\news.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.aspnetcore.authorization\\10.0.0\\microsoft.aspnetcore.authorization.10.0.0.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.aspnetcore.components\\10.0.0\\microsoft.aspnetcore.components.10.0.0.nupkg.sha512",
